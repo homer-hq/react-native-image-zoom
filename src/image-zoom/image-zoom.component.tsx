@@ -137,12 +137,6 @@ export default class ImageViewer extends React.Component<Props, State> {
             new Date().getTime() - this.lastClickTime <
             (this.props.doubleClickInterval || 0)
           ) {
-            // 认为触发了双击
-            this.lastClickTime = 0
-            if (this.props.onDoubleClick) {
-              this.props.onDoubleClick()
-            }
-
             // 取消长按
             clearTimeout(this.longPressTimeout)
 
@@ -180,6 +174,12 @@ export default class ImageViewer extends React.Component<Props, State> {
                 (this.props.cropHeight / 2 - this.doubleClickY) *
                 diffScale /
                 this.scale
+            }
+
+            // 认为触发了双击
+            this.lastClickTime = 0
+            if (this.props.onDoubleClick) {
+              this.props.onDoubleClick(this.scale)
             }
 
             Animated.parallel([

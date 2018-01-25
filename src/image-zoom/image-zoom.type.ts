@@ -76,7 +76,7 @@ export class Props {
   /**
    * 双击的回调
    */
-  public onDoubleClick?: () => void = () => {
+  public onDoubleClick?: (scale?: number) => void = () => {
     //
   }
 
